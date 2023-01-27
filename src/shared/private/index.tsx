@@ -1,5 +1,5 @@
 const WEB_CLIENT_ID =
-  '814353624-crntv6f6kftsg60tgr9pj9cs372ib0g2.apps.googleusercontent.com';
+  '638671032913-832ncnksmrq8jasjlf2gpv89nekstvkp.apps.googleusercontent.com';
 
 const SCOPE = 'https://www.googleapis.com/auth/drive.readonly';
 

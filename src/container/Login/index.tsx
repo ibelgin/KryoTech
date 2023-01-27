@@ -9,14 +9,13 @@ import {initialConfig, checkIfSignedIn, signIn} from 'utils/google-signin';
 import Text from 'components/Text';
 
 import AntDesign from 'react-native-vector-icons/AntDesign';
-import TitleTextButton from 'components/TitleTextButton';
 
 interface LoginProps {}
 
 const Login = memo((_props: LoginProps) => {
   useEffect(() => {
-    // initialConfig();
-    // checkIfSignedIn();
+    initialConfig();
+    checkIfSignedIn();
   });
 
   return (
@@ -29,7 +28,11 @@ const Login = memo((_props: LoginProps) => {
         {Strings.DESC}
       </Text>
       <ButtonIconText
-        onPress={() => signIn()}
+        onPress={() =>
+          signIn().then(val => {
+            console.log(val);
+          })
+        }
         icon={
           <AntDesign name={Strings.ICON_NAME} size={24} color={Colors.White} />
         }
