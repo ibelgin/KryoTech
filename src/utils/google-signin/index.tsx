@@ -1,20 +1,15 @@
-// import {
-//   GoogleSignin,
-//   statusCodes,
-// } from '@react-native-google-signin/google-signin';
-
-// import {WEB_CLIENT_ID, SCOPE} from 'shared/private';
+import {
+  GoogleSignin,
+  statusCodes,
+} from '@react-native-google-signin/google-signin';
+import {Alert} from 'react-native';
 
 /**
  * Intialize the GoogleSignIn Variable
  * called in useEffect or ComponentDidMount
  */
 function initialConfig() {
-  // GoogleSignin.configure({
-  //   scopes: [SCOPE],
-  //   webClientId: WEB_CLIENT_ID,
-  //   offlineAccess: true,
-  // });
+  GoogleSignin.configure();
 }
 
 /**
@@ -23,12 +18,12 @@ function initialConfig() {
  */
 
 async function checkIfSignedIn() {
-  // const isSignedIn = await GoogleSignin.isSignedIn();
-  // if (isSignedIn) {
-  //   getCurrentUserInfo();
-  // } else {
-  //   signIn();
-  // }
+  const isSignedIn = await GoogleSignin.isSignedIn();
+  if (isSignedIn) {
+    getCurrentUserInfo();
+  } else {
+    signIn();
+  }
 }
 
 /**
@@ -36,21 +31,21 @@ async function checkIfSignedIn() {
  */
 
 async function signIn() {
-  // try {
-  //   await GoogleSignin.hasPlayServices();
-  //   const userInfo = await GoogleSignin.signIn();
-  //   onSignIn(userInfo);
-  // } catch (error: any) {
-  //   if (error.code === statusCodes.SIGN_IN_CANCELLED) {
-  //     return error.message;
-  //   } else if (error.code === statusCodes.IN_PROGRESS) {
-  //     return error.message;
-  //   } else if (error.code === statusCodes.PLAY_SERVICES_NOT_AVAILABLE) {
-  //     return error.message;
-  //   } else {
-  //     return error.message;
-  //   }
-  // }
+  try {
+    await GoogleSignin.hasPlayServices();
+    const userInfo = await GoogleSignin.signIn();
+    onSignIn(userInfo);
+  } catch (error: any) {
+    if (error.code === statusCodes.SIGN_IN_CANCELLED) {
+      return error.message;
+    } else if (error.code === statusCodes.IN_PROGRESS) {
+      return error.message;
+    } else if (error.code === statusCodes.PLAY_SERVICES_NOT_AVAILABLE) {
+      return error.message;
+    } else {
+      return error.message;
+    }
+  }
 }
 
 /**
@@ -58,15 +53,15 @@ async function signIn() {
  */
 
 async function getCurrentUserInfo() {
-  // try {
-  //   const userInfo = await GoogleSignin.signInSilently();
-  //   onSignIn(userInfo);
-  // } catch (error: any) {
-  //   if (error.code === statusCodes.SIGN_IN_REQUIRED) {
-  //     signIn();
-  //   } else {
-  //   }
-  // }
+  try {
+    const userInfo = await GoogleSignin.signInSilently();
+    onSignIn(userInfo);
+  } catch (error: any) {
+    if (error.code === statusCodes.SIGN_IN_REQUIRED) {
+      signIn();
+    } else {
+    }
+  }
 }
 
 /**
@@ -89,10 +84,11 @@ function onSignIn(data: any) {
   //   },
   // };
 
-  // console.log(data.user.email);
-  // console.log(data.user.photo);
-  // console.log(data.user.id);
-  // console.log(data.user.name);
+  console.log(data.user.email);
+  console.log(data.user.photo);
+  console.log(data.user.id);
+  console.log(data.user.name);
+  Alert.alert('Done', JSON.stringify(data));
 }
 
 export {initialConfig, signIn, onSignIn, checkIfSignedIn};

@@ -1,0 +1,64 @@
+{
+  "project_info": {
+    "project_number": "638671032913",
+    "firebase_url": "https://iot-based-database-default-rtdb.firebaseio.com",
+    "project_id": "iot-based-database",
+    "storage_bucket": "iot-based-database.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:638671032913:android:bca3798b5122b301379e70",
+        "android_client_info": {
+          "package_name": "com.kryotech"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "638671032913-7768p477aeccfu0d3lc1vil15i4hvteh.apps.googleusercontent.com",
+          "client_type": 3,
+          "android_info": {
+            "package_name": "com.kryotech",
+            "certificate_hash": "22f2e8a1c21e2a3da0b227e2b64956a50707594f"
+          }
+        },
+        {
+          "client_id": "638671032913-m2gt95c3491ljql76tfh7joj1kr9e0v8.apps.googleusercontent.com",
+          "client_type": 3,
+          "android_info": {
+            "package_name": "com.kryotech",
+            "certificate_hash": "254c07f70016f68f53d1a0eb8d9a440d67b3a3dc"
+          }
+        },
+        {
+          "client_id": "638671032913-v6t9jq2c767dlhnpgi91jkvi7ccfvlkf.apps.googleusercontent.com",
+          "client_type": 3,
+          "android_info": {
+            "package_name": "com.kryotech",
+            "certificate_hash": "5e8f16062ea3cd2c4a0d547876baa6f38cabf625"
+          }
+        },
+        {
+          "client_id": "638671032913-a5a9er9mmp8urkq3ckvao4jkvdmf09l1.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyBSP3iU9Np2Pag71LBahpmXMvfCX-0A_5w"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "638671032913-832ncnksmrq8jasjlf2gpv89nekstvkp.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
