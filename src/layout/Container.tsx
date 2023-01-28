@@ -20,7 +20,11 @@ interface Props extends ViewProps {
 
 const Container = (props: Props) => (
   <DefaultView style={[{flex: 1, backgroundColor: Colors.Black}, props.style]}>
-    <StatusBar barStyle="dark-content" backgroundColor={Colors.White} />
+    <StatusBar
+      barStyle="dark-content"
+      backgroundColor={Colors.White}
+      translucent
+    />
     <ScrollView>{props.children}</ScrollView>
   </DefaultView>
 );
