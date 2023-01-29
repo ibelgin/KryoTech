@@ -7,7 +7,6 @@ export interface TextProps {
   size?: number;
   style?: TextStyle;
   children?: any;
-  onPress?: () => void;
   numberOfLines?: number;
   padding?: number;
   fontWeight?: any;
@@ -23,7 +22,6 @@ export interface TextProps {
 export default ({
   color,
   style,
-  onPress,
   numberOfLines,
   children,
   size,
@@ -66,8 +64,7 @@ export default ({
         },
         style,
       ]}
-      numberOfLines={numberOfLines}
-      onPress={onPress}>
+      numberOfLines={numberOfLines}>
       {children}
     </Text>
   );
