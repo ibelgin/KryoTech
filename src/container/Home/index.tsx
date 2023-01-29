@@ -6,11 +6,15 @@ import DataComponent from 'components/DataComponent';
 import database from '@react-native-firebase/database';
 import Icon from 'react-native-vector-icons/AntDesign';
 import {DataValueType} from 'types/DataValuetype';
+import {PowerType} from 'types/PowerType';
 import Text from 'components/Text';
 import {Colors} from 'configs';
 import {IMAGE} from 'images';
 import Theme from 'style/Theme';
 import scale from 'utils/scale';
+import {WINDOW_WIDTH} from 'shared/global/constants';
+
+import {LineChart} from 'react-native-chart-kit';
 
 interface HomeProps {}
 
@@ -25,6 +29,33 @@ const Home = memo((_props: HomeProps) => {
     temp: 0,
   });
 
+  const [powerDate, setPowerDate] = useState([0]);
+  const [datasets, setDatasets] = useState([0]);
+
+  const Linedata = {
+    labels: powerDate,
+    datasets: [
+      {
+        data: datasets,
+        color: (opacity = 1) => '#008173',
+      },
+    ],
+  };
+
+  const setDataset = (value: PowerType) => {
+    var todos = [...powerDate];
+    var body = [...datasets];
+    for (const key1 in value) {
+      for (const key2 in value[key1]) {
+        body.push(value[key1][key2].power);
+      }
+      var d = new Date(Number(key1));
+      todos.push(d.getHours().toString() + ':' + d.getMinutes().toString());
+    }
+    setPowerDate(todos);
+    setDatasets(body);
+  };
+
   const setDataNow = (value: DataValueType) => {
     for (const key1 in value) {
       for (const key2 in value[key1]) {
@@ -33,22 +64,38 @@ const Home = memo((_props: HomeProps) => {
     }
   };
 
+  const chartConfig = {
+    color: (opacity = 0) => '#007773',
+    strokeWidth: 2,
+    barPercentage: 0.5,
+    backgroundColor: Colors.DarkGreen,
+  };
+
   useEffect(() => {
-    // try {
-    //   const onValueChange = database()
-    //     .ref('/Sensors/')
-    //     .limitToLast(1)
-    //     .on('value', snapshot => {
-    //       const value = snapshot.val();
-    //       setDataNow(value);
-    //     });
-    //   return () =>
-    //     database()
-    //       .ref('/Sensors/')
-    //       .off('value', test => console.log(test));
-    // } catch {
-    //   Alert.alert('KryoTech', 'Error 098');
-    // }
+    const onValueChange = database()
+      .ref('/Sensors/')
+      .limitToLast(1)
+      .on('value', snapshot => {
+        const value = snapshot.val();
+        setDataNow(value);
+        console.log(value);
+      });
+
+    const onChangeValue = database()
+      .ref('/Power/')
+      .limitToLast(8)
+      .on('value', snapshot => {
+        const value = snapshot.val();
+        setDataset(value);
+      });
+    return () => {
+      database()
+        .ref('/Sensors/')
+        .off('value', test => console.log(test));
+      database()
+        .ref('/Power/')
+        .off('value', test => console.log(test));
+    };
   }, []);
 
   return (
@@ -76,6 +123,16 @@ const Home = memo((_props: HomeProps) => {
         title="Current"
         value={data.current}
         dataType={'Amps'}
+      />
+      <LineChart
+        data={Linedata}
+        width={WINDOW_WIDTH + 30}
+        transparent
+        height={256}
+        chartConfig={chartConfig}
+        withVerticalLines={false}
+        withHorizontalLines={false}
+        bezier
       />
       <DataComponent
         image={IMAGE.gas}
