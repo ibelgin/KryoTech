@@ -65,4 +65,8 @@ export default StyleSheet.create({
     shadowRadius: 4,
     elevation: 4,
   },
+  full: {
+    height: '100%',
+    width: '100%',
+  },
 });

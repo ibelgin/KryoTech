@@ -1,8 +1,8 @@
 const Strings = {
   SIGN_IN: 'Sign In With Google',
   ICON_NAME: 'google',
-  DESC: 'This is an Amazing app to use. You can easily help people through the app portal.',
-  WELCOME: 'Welcome to SolFi',
+  DESC: 'An App which will help with the monitering of Onions in the IoT device',
+  WELCOME: 'Welcome to KryoTech',
 };
 
 export default Strings;

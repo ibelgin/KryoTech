@@ -2,7 +2,6 @@ import {
   GoogleSignin,
   statusCodes,
 } from '@react-native-google-signin/google-signin';
-import {Alert} from 'react-native';
 
 /**
  * Intialize the GoogleSignIn Variable
@@ -88,7 +87,6 @@ function onSignIn(data: any) {
   console.log(data.user.photo);
   console.log(data.user.id);
   console.log(data.user.name);
-  Alert.alert('Done', JSON.stringify(data));
 }
 
 export {initialConfig, signIn, onSignIn, checkIfSignedIn};
