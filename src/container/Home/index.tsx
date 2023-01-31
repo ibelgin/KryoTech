@@ -45,6 +45,10 @@ const Home = memo((_props: HomeProps) => {
   const setDataset = (value: PowerType) => {
     var todos = [...powerDate];
     var body = [...datasets];
+    if (todos[0] === 0) {
+      todos.pop();
+      body.pop();
+    }
     for (const key1 in value) {
       for (const key2 in value[key1]) {
         body.push(value[key1][key2].power);

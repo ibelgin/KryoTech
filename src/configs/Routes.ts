@@ -1,7 +1,8 @@
 const Routes = {
   // Home Stack
   Login: 'Login',
-  Home: 'Home'
+  Home: 'Home',
+  Update: 'Update',
 };
 
 export default Routes;
