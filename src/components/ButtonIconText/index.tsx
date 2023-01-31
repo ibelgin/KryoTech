@@ -48,7 +48,7 @@ export default ButtonIconText;
 const styles = StyleSheet.create({
   container: {
     margin: 20,
-    height: 60,
+     height: 60,
     borderRadius: 10,
     ...Theme.flexDirection,
     ...Theme.center,
