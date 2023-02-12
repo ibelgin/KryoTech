@@ -19,9 +19,17 @@ function initialConfig() {
 async function checkIfSignedIn() {
   const isSignedIn = await GoogleSignin.isSignedIn();
   if (isSignedIn) {
-    getCurrentUserInfo();
+    return new Promise<void>(resolve => {
+      getCurrentUserInfo().then(() => {
+        resolve();
+      });
+    });
   } else {
-    signIn();
+    return new Promise<void>(resolve => {
+      signIn().then(() => {
+        resolve();
+      });
+    });
   }
 }
 
