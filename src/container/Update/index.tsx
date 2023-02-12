@@ -14,10 +14,30 @@ import {Colors} from 'configs';
 import scale from 'utils/scale';
 import Icon from 'react-native-vector-icons/AntDesign';
 import ButtonIconText from 'components/ButtonIconText';
+import {UpdateData} from 'utils/update';
+import {useNavigation} from '@react-navigation/native';
 
 interface UpdateProps {}
 
 const Update = memo((_props: UpdateProps) => {
+  const [temp, setTemp] = useState('');
+  const [humidity, setHumidity] = useState('');
+
+  const {navigate, setOptions, goBack} = useNavigation();
+
+  const update = () => {
+    if (!temp && !humidity) {
+      Alert.alert('KryoTech', 'Empty Data');
+    } else if (!humidity) {
+      UpdateData('temperature', temp);
+    } else if (!temp) {
+      UpdateData('humidity', humidity);
+    } else {
+      UpdateData('temperature', temp);
+      UpdateData('humidity', humidity);
+    }
+  };
+
   return (
     <Container style={styles.container}>
       <StatusBar
@@ -26,7 +46,7 @@ const Update = memo((_props: UpdateProps) => {
       />
       <View style={styles.initContainer}>
         <Text style={styles.heading}>
-          <Icon name="left" size={24} /> Update
+          <Icon name="left" size={24} onPress={() => goBack()} /> Update
         </Text>
         <Text style={styles.welcome}>Gas and Humidity</Text>
       </View>
@@ -36,8 +56,8 @@ const Update = memo((_props: UpdateProps) => {
         style={styles.textinput}
         placeholder="Humidity"
         placeholderTextColor="#7CBBBD"
-        //   onChangeText={text => setName(text)}
-        //   value={name}
+        onChangeText={text => setHumidity(text)}
+        value={humidity}
       />
       <Text style={styles.minitext}>Temprature</Text>
 
@@ -45,13 +65,13 @@ const Update = memo((_props: UpdateProps) => {
         style={styles.textinput}
         placeholder="Temprature"
         placeholderTextColor="#7CBBBD"
-        //   onChangeText={text => setName(text)}
-        //   value={name}
+        onChangeText={text => setTemp(text)}
+        value={temp}
       />
       <ButtonIconText
         backgroundColor={Colors.LightGreen}
         title={'Update the Value'}
-        // onPress={}
+        onPress={update}
       />
     </Container>
   );
@@ -112,7 +132,7 @@ const styles = StyleSheet.create({
     fontSize: 18,
     paddingHorizontal: 20,
     marginTop: 30,
-    fontWeight: '500'
+    fontWeight: '500',
   },
 });
 

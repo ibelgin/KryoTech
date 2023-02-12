@@ -1,5 +1,5 @@
 /* eslint-disable @typescript-eslint/no-unused-vars */
-import React, {memo, useEffect, useRef, useState} from 'react';
+import React, {memo, useEffect, useCallback, useState} from 'react';
 import {StyleSheet, View, Image, StatusBar, Alert} from 'react-native';
 import Container from 'layout/Container';
 import DataComponent from 'components/DataComponent';
@@ -13,13 +13,17 @@ import {IMAGE} from 'images';
 import Theme from 'style/Theme';
 import scale from 'utils/scale';
 import {WINDOW_WIDTH} from 'shared/global/constants';
+import {useNavigation} from '@react-navigation/native';
+import {Routes} from 'configs';
 
 import {LineChart} from 'react-native-chart-kit';
 
 interface HomeProps {}
 
 const Home = memo((_props: HomeProps) => {
-  const [name, setName] = React.useState('Belgin');
+  const {navigate, setOptions} = useNavigation();
+
+  const [name, setName] = React.useState('');
   const [data, setData] = React.useState({
     current: 0.0,
     gas: 0.0,
@@ -31,6 +35,10 @@ const Home = memo((_props: HomeProps) => {
 
   const [powerDate, setPowerDate] = useState([0]);
   const [datasets, setDatasets] = useState([0]);
+
+  const navigateToUpdate = useCallback(() => {
+    navigate(Routes.Update);
+  }, [navigate]);
 
   const Linedata = {
     labels: powerDate,
@@ -45,10 +53,8 @@ const Home = memo((_props: HomeProps) => {
   const setDataset = (value: PowerType) => {
     var todos = [...powerDate];
     var body = [...datasets];
-    if (todos[0] === 0) {
-      todos.pop();
-      body.pop();
-    }
+    todos = [0];
+    body = [0];
     for (const key1 in value) {
       for (const key2 in value[key1]) {
         body.push(value[key1][key2].power);
@@ -66,6 +72,7 @@ const Home = memo((_props: HomeProps) => {
         setData(value[key1][key2]);
       }
     }
+    console.log('data', data);
   };
 
   const chartConfig = {
@@ -117,7 +124,12 @@ const Home = memo((_props: HomeProps) => {
           <Text style={styles.text}>Humidity </Text>
           <Text style={styles.text}>Load </Text>
           <Text style={styles.text}>Temp </Text>
-          <Icon style={styles.textIcon} size={30} name="setting" />
+          <Icon
+            style={styles.textIcon}
+            size={30}
+            name="setting"
+            onPress={navigateToUpdate}
+          />
         </View>
         <View style={styles.gap} />
       </View>

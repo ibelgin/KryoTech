@@ -3,20 +3,30 @@ import React, {memo, useEffect, useRef} from 'react';
 import {StyleSheet, View, Image, StatusBar} from 'react-native';
 import Container from 'layout/Container';
 import ButtonIconText from 'components/ButtonIconText';
-import {initialConfig, checkIfSignedIn, signIn} from 'utils/google-signin';
+import {
+  initialConfig,
+  checkIfSignedIn,
+  signIn,
+  onSignIn,
+} from 'utils/google-signin';
 import AntDesign from 'react-native-vector-icons/AntDesign';
-import {Colors, Constants} from 'configs';
+import {Colors, Constants, Routes} from 'configs';
 import Text from 'components/Text';
 import Strings from './strings.en';
 import Theme from 'style/Theme';
 import {IMAGE} from 'images';
+import {useNavigation} from '@react-navigation/native';
 
 interface LoginProps {}
 
 const Login = memo((_props: LoginProps) => {
+  const {navigate} = useNavigation();
+
   useEffect(() => {
-    // initialConfig();
-    // checkIfSignedIn();
+    initialConfig();
+    checkIfSignedIn().then(() => {
+      navigate(Routes.Home);
+    });
   });
 
   return (
