@@ -72,7 +72,7 @@ const Home = memo((_props: HomeProps) => {
         setData(value[key1][key2]);
       }
     }
-    console.log('data', data);
+    // console.log('data', data);
   };
 
   const chartConfig = {
@@ -89,7 +89,6 @@ const Home = memo((_props: HomeProps) => {
       .on('value', snapshot => {
         const value = snapshot.val();
         setDataNow(value);
-        console.log(value);
       });
 
     const onChangeValue = database()

@@ -18,6 +18,7 @@ import webbrowser
 from tkinter import ttk
 import webview
 import urllib.request
+import datetime
 #from selenium.webdriver.chrome.service import Service
 #from webdriver_manager.chrome import ChromeDriverManager
 firebase = firebase.FirebaseApplication(
@@ -88,12 +89,15 @@ def sensor():
     sleep(4)
     pwr = 230*ampsA0
     pwr = round(pwr, places)
+    timestamp = datetime.datetime.now().strftime("%Y-%m-%d %H:%M:%S")
     data = {
-        '2345': {
+        timestamp: {
             'temp': t,
             'humidity': h,
             'load': val,
-            'gas': ain0
+            'gas': ain0,
+            'current': ampsA0,
+            'power': pwr,
         }
     }
     result = firebase.post(

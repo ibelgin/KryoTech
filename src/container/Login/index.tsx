@@ -30,7 +30,7 @@ const Login = memo((_props: LoginProps) => {
   });
 
   return (
-    <Container style={styles.container}>
+    <Container style={styles.container}>ezs
       <StatusBar backgroundColor={'transparent'} />
       <View style={styles.illustration_view}>
         <Image source={IMAGE.cover} style={{height: '100%', width: '100%'}} />
