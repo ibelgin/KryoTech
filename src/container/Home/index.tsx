@@ -58,9 +58,9 @@ const Home = memo((_props: HomeProps) => {
     for (const key1 in value) {
       for (const key2 in value[key1]) {
         body.push(value[key1][key2].power);
+        var d = new Date(key2);
+        todos.push(d.getHours().toString() + ':' + d.getMinutes().toString());
       }
-      var d = new Date(Number(key1));
-      todos.push(d.getHours().toString() + ':' + d.getMinutes().toString());
     }
     setPowerDate(todos);
     setDatasets(body);
@@ -92,8 +92,8 @@ const Home = memo((_props: HomeProps) => {
       });
 
     const onChangeValue = database()
-      .ref('/Power/')
-      .limitToLast(8)
+      .ref('/Sensors/')
+      .limitToLast(5)
       .on('value', snapshot => {
         const value = snapshot.val();
         setDataset(value);
@@ -101,9 +101,6 @@ const Home = memo((_props: HomeProps) => {
     return () => {
       database()
         .ref('/Sensors/')
-        .off('value', test => console.log(test));
-      database()
-        .ref('/Power/')
         .off('value', test => console.log(test));
     };
   }, []);

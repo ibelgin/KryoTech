@@ -1,4 +1,5 @@
 import database from '@react-native-firebase/database';
+import {Alert} from 'react-native';
 
 function UpdateData(key: String, value: any) {
   const json = JSON.stringify({[key]: value});
@@ -7,7 +8,7 @@ function UpdateData(key: String, value: any) {
   database()
     .ref('/')
     .update(data)
-    .then(() => console.log('Data updated.'));
+    .then(() => Alert.alert('KryoTech', 'Value Updated successfully`'));
 }
 
 export {UpdateData};
