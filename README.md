@@ -10,5 +10,5 @@ Run this app to see the live version
 
 * **Belgin Jarosh** - *App Developer*
 * **Jagadhesh** - *IoT Developer*
-* **Vishal** - *Product Developer*
-* **Suraj** - *Product Developer*
+* **Vishal** - *Product Developer - Hardware*
+* **Suraj** - *Product Developer - Hardware*
