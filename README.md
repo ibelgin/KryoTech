@@ -9,6 +9,6 @@ Run this app to see the live version
 # Author 
 
 * **Belgin Jarosh** - *App Developer*
-* **Jagadhesh** - *IoT Developer*
+* **Jagadhesh** - *IoT Dev*
 * **Vishal** - *Product Developer - Hardware*
 * **Suraj** - *Product Developer - Hardware*
